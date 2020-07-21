@@ -19,8 +19,6 @@ const App = () => {
     return Math.floor(Math.random() * Math.floor(max))
   }
 
-  console.log("render");
-
   return (
     <div className="App">
       <header className="App-header">
