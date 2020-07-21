@@ -1,23 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import data from '../src/database/names.json'
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const [name, setName] = useState('')
+
+  const handleNameChange = index => {
+    setName(data[index].name)
+  }
+
+  const handleSubmit = e => {
+    handleNameChange(getRandomIndex(9))
+  }
+
+  const getRandomIndex = max => {
+    return Math.floor(Math.random() * Math.floor(max))
+  }
+
+  console.log("render");
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Value goes here"
+            value={name}
+            onChange={handleNameChange}
+          />
+          <input type="submit" style={{ fontSize: '3rem' }} value="Generate" />
+        </form>
       </header>
     </div>
   );
